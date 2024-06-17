@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test</title>
+	<style>
+		body {
+			background: #303030;
+			color: #eee;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<h3>Screen JS</h3>
+	<div id="ios"></div>
+	<div id="ratio"></div>
+	<div id="screen"></div>
+	<h4 id="predict"></h4>
+</body>
+<script>
+function getiOSVersion() {
+    const userAgent = navigator.userAgent;
+    const match = userAgent.match(/(iPad|iPhone|iPod)[^;]*; CPU .*OS (\d+_\d+(_\d+)?)/);
+    if (match && match[2]) {
+        return match[2].replace(/_/g, '.');
+    }
+    return null;
+}
+var phone_os = getiOSVersion();
+var ratio = window.devicePixelRatio;
+var h = window.screen.height;
+var w = window.screen.width;
+document.getElementById('ios').innerText = `iOS: ${phone_os}`;
+document.getElementById('ratio').innerText = `Screen Ratio: ${ratio}`;
+document.getElementById('screen').innerText = `Width: ${w} Height: ${h}`;
+if (phone_os == '16.7.8' && ratio == 2 && h == 667 && w == 375) {
+	document.getElementById('predict').innerText = `Phone is: iPhone 8`;
+}
+else {
+	document.getElementById('predict').innerText = `Phone is: Unknown`;
+}
+</script>
+</html>
